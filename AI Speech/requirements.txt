@@ -1,0 +1,2 @@
+azure-cognitiveservices-speech==1.43.0
+load-dotenv==0.1.0
