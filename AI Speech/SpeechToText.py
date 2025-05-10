@@ -11,14 +11,14 @@ audio_config = speechsdk.audio.AudioConfig(use_default_microphone=True)
 speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config, audio_config=audio_config)
 
 print("Nói gì đó trong vài giây bằng Tiếng Việt.")
-speech_recognition_result = speech_recognizer.recognize_once_async().get()
+result = speech_recognizer.recognize_once_async().get()
 
-if speech_recognition_result.reason == speechsdk.ResultReason.RecognizedSpeech:
-    print("Lời bạn vừa nói là: {}".format(speech_recognition_result.text))
-elif speech_recognition_result.reason == speechsdk.ResultReason.NoMatch:
-    print("Không nhận dạng được lời nói: {}".format(speech_recognition_result.no_match_details))
-elif speech_recognition_result.reason == speechsdk.ResultReason.Canceled:
-    cancellation_details = speech_recognition_result.cancellation_details
+if result.reason == speechsdk.ResultReason.RecognizedSpeech:
+    print("Lời bạn vừa nói là: {}".format(result.text))
+elif result.reason == speechsdk.ResultReason.NoMatch:
+    print("Không nhận dạng được lời nói: {}".format(result.no_match_details))
+elif result.reason == speechsdk.ResultReason.Canceled:
+    cancellation_details = result.cancellation_details
     print("Hủy yêu cầu: {}".format(cancellation_details.reason))
     if cancellation_details.reason == speechsdk.CancellationReason.Error:
         print("Chi tiết lỗi: {}".format(cancellation_details.error_details))
